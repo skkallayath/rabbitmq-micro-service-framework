@@ -1,6 +1,6 @@
 {
   "name": "rabbitmq-micro-service-framework",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A nodejs microservice framework using rabbitmq as message broker",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,5 +18,13 @@
   "devDependencies": {
     "@types/amqplib": "^0.5.13",
     "typescript": "^3.9.2"
-  }
+  },
+  "keywords": [
+    "rabbitmq",
+    "nodejs",
+    "microservice",
+    "framework",
+    "amqp",
+    "microservices"
+  ]
 }
