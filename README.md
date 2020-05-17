@@ -41,12 +41,16 @@ service.registerRpcHandler("multply", (a, b) => {
 * To consume the rpc request
 
 ```js
+const { rpcRequest } = require('rabbitmq-micro-service-framework')
+
 const sum = await rpcRequest("serviceName", "sum", 1, 2, 3, 4)
 ```
 
 or
 
 ```js
+const { rpcRequest } = require('rabbitmq-micro-service-framework')
+
 const multiply = await rpcRequest("serviceName", "multiply", 120, 2)
 ```
 
