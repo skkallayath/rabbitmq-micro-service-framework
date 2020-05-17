@@ -1,5 +1,5 @@
 import rpcRequest from './rpcRequest';
-import createServer from './createServer';
+import createService from './createService';
 
-export { rpcRequest, createServer };
-export default { rpcRequest, createServer };
+export { rpcRequest, createService };
+export default { rpcRequest, createService };

@@ -23,8 +23,8 @@ export default class MicroService {
     this._handlers = {};
   }
 
-  registerHandler = (name: string, handler: Function) => {
-    this._handlers[name] = handler;
+  registerRpcHandler = (rpcEventName: string, handler: Function) => {
+    this._handlers[rpcEventName] = handler;
   };
 
   connect = async (config: MicroServiceConfig) => {
