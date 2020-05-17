@@ -1,0 +1,22 @@
+{
+  "name": "rabbitmq-micro-service-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.6",
+    "serialize-error": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.13",
+    "typescript": "^3.9.2"
+  }
+}
