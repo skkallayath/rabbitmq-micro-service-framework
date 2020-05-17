@@ -1,5 +1,5 @@
-import rpcRequest from './rpcRequest';
-import createService from './createService';
+import { rpcRequest, rpcRequestWihConfig } from "./rpcRequest";
+import createService from "./createService";
 
-export { rpcRequest, createService };
-export default { rpcRequest, createService };
+export { rpcRequest, rpcRequestWihConfig, createService };
+export default { rpcRequest, rpcRequestWihConfig, createService };

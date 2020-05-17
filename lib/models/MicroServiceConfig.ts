@@ -1,4 +1,4 @@
-import { Options } from 'amqplib';
+import { Options } from "amqplib";
 
 export default interface MicroServiceConfig {
   url: string;

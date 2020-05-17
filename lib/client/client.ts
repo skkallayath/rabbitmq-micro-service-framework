@@ -1,6 +1,7 @@
-import { Connection, Channel, connect, ConsumeMessage } from 'amqplib';
-import { deserializeError } from 'serialize-error';
-import MicroServiceConfig from '../micro-service/MicroServiceConfig';
+import { Connection, Channel, connect, ConsumeMessage } from "amqplib";
+import { deserializeError } from "serialize-error";
+import MicroServiceConfig from "../models/MicroServiceConfig";
+import MicroServiceResponse from "../models/MicroServiceResponse";
 
 export default class RpcClient {
   private _config: MicroServiceConfig | undefined;
@@ -18,17 +19,17 @@ export default class RpcClient {
 
   private _initilaize = async () => {
     if (!this._config || !this._config.url) {
-      throw Error('Invalid configuraton');
+      throw Error("Invalid configuraton");
     }
     this._connection = await connect(this._config.url);
     this._channel = await this._connection.createChannel();
     const queue = await this._channel.assertQueue(
-      '',
+      "",
       this._config.queueConfigurations || {
         autoDelete: false,
         durable: true,
         arguments: {
-          'x-message-ttl': 1000 * 60 * 5,
+          "x-message-ttl": 1000 * 60 * 5,
         },
       }
     );
@@ -41,14 +42,14 @@ export default class RpcClient {
     reject: Function
   ) => {
     if (message === null) return;
-    const incomingContent = message.content
+    const incomingContent: MicroServiceResponse | undefined = message.content
       ? JSON.parse(message.content.toString())
-      : null;
+      : undefined;
     // transform response
-    const content =
+    const content: any =
       incomingContent && incomingContent.response
         ? incomingContent.response
-        : null;
+        : undefined;
 
     // check for an error signature too
     if (
@@ -82,7 +83,7 @@ export default class RpcClient {
   request = async (rpcQueue: string, event: string, params: any[]) => {
     return new Promise(async (resolve, reject) => {
       if (!this._channel) {
-        reject(new Error('No channel found'));
+        reject(new Error("No channel found"));
         return;
       }
       await this._channel.sendToQueue(

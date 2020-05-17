@@ -1,8 +1,8 @@
-import { Connection, connect, Channel, Message, ConsumeMessage } from 'amqplib';
-import { serializeError } from 'serialize-error';
-import MicroServiceConfig from './MicroServiceConfig';
-import MicroServiceContent from './MicroServiceContent';
-import MicroServiceResponse from './MicroServiceResponse';
+import { Connection, connect, Channel, Message, ConsumeMessage } from "amqplib";
+import { serializeError } from "serialize-error";
+import MicroServiceConfig from "../models/MicroServiceConfig";
+import MicroServiceContent from "../models/MicroServiceContent";
+import MicroServiceResponse from "../models/MicroServiceResponse";
 
 export default class MicroService {
   private _serivceName: string;
@@ -68,7 +68,10 @@ export default class MicroService {
 
     const handler = this._findHandler(content);
     if (!handler) {
-      await this._sendResponseBack(message, new Error(`No event handler found for event ${content.event}`));
+      await this._sendResponseBack(
+        message,
+        new Error(`No event handler found for event ${content.event}`)
+      );
       return;
     }
 
@@ -79,7 +82,7 @@ export default class MicroService {
 
   private _initialize = async () => {
     if (!this._config || !this._serivceName || !this._config.url) {
-      throw Error('Invalid configuraton');
+      throw Error("Invalid configuraton");
     }
     this._connection = await connect(this._config.url);
     this._channel = await this._connection.createChannel();
@@ -89,7 +92,7 @@ export default class MicroService {
         autoDelete: false,
         durable: true,
         arguments: {
-          'x-message-ttl': 1000 * 60 * 5,
+          "x-message-ttl": 1000 * 60 * 5,
         },
       }
     );
