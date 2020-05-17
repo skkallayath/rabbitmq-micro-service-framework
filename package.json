@@ -1,7 +1,7 @@
 {
   "name": "rabbitmq-micro-service-framework",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "A nodejs microservice framework using rabbitmq as message broker",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -9,8 +9,8 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Sharafudheen KK",
+  "license": "MIT",
   "dependencies": {
     "amqplib": "^0.5.6",
     "serialize-error": "^7.0.1"
