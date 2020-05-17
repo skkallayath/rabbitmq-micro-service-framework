@@ -47,9 +47,7 @@ export default class MicroService {
     if (this._channel) {
       const response: MicroServiceResponse = this._serializeResponse(reply);
       const responseBuffer: Buffer = Buffer.from(JSON.stringify(response));
-      await this._channel.sendToQueue(msg.properties.replyTo, responseBuffer, {
-        correlationId: msg.properties.correlationId,
-      });
+      await this._channel.sendToQueue(msg.properties.replyTo, responseBuffer);
       await this._channel.ack(msg);
     }
   };
@@ -70,6 +68,7 @@ export default class MicroService {
 
     const handler = this._findHandler(content);
     if (!handler) {
+      await this._sendResponseBack(message, new Error(`No event handler found for event ${content.event}`));
       return;
     }
 
