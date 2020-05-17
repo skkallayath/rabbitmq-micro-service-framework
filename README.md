@@ -17,7 +17,7 @@ The package will use environment variable `RABBITMQ_URL` to connect to rabbitmq,
 ```js
 const { createService } = require('rabbitmq-micro-service-framework')
 
-const service = createService('serviceName');
+const service = await createService('serviceName');
 ```
 
 * To add an rpc request handler
